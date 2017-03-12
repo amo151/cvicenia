@@ -84,7 +84,15 @@ void Trojuholnik::setC(double c)
 
 bool Trojuholnik::isValid()
 {
-	return a + b > c && b + c > a && c + a > b && a != 0 && b != 0 && c != 0;
+	if ( a + b > c && b + c > a && c + a > b && a != 0 && b != 0 && c != 0 )
+	{
+		return true;
+	}
+	else
+	{
+		std::cout << "Neplati trojuhonikova nerovnost!" << std::endl;
+		return false;
+	}
 }
 
 Trojuholnik::Trojuholnik(double stranaA, double stranaB, double stranaC)
@@ -109,7 +117,17 @@ void Trojuholnik::nastav()
 		{
 			std::cout << "Zadajte stranu a trojuholnika:" << std::endl;
 			std::cin >> _var;
-		} while ( !std::cin.good() || _var < 0 );
+			if ( !std::cin.good() || _var < 0 )
+			{
+				std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
+				std::cin.clear();
+				while ( std::cin.get() != '\n' )
+				{
+				}
+				continue;
+			}
+			break;
+		} while ( true );
 
 		a = _var;
 
@@ -117,7 +135,17 @@ void Trojuholnik::nastav()
 		{
 			std::cout << "Zadajte stranu b trojuholnika:" << std::endl;
 			std::cin >> _var;
-		} while ( !std::cin.good() || _var < 0 );
+			if ( !std::cin.good() || _var < 0 )
+			{
+				std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
+				std::cin.clear();
+				while ( std::cin.get() != '\n' )
+				{
+				}
+				continue;
+			}
+			break;
+		} while ( true );
 
 		b = _var;
 
@@ -125,7 +153,17 @@ void Trojuholnik::nastav()
 		{
 			std::cout << "Zadajte stranu c trojuholnika:" << std::endl;
 			std::cin >> _var;
-		} while ( !std::cin.good() || _var < 0 );
+			if ( !std::cin.good() || _var < 0 )
+			{
+				std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
+				std::cin.clear();
+				while ( std::cin.get() != '\n' )
+				{
+				}
+				continue;
+			}
+			break;
+		} while ( true );
 
 		c = _var;
 
@@ -193,7 +231,17 @@ void Obdlznik::nastav()
 	{
 		std::cout << "Zadajte stranu a:" << std::endl;
 		std::cin >> _var;
-	} while ( !std::cin.good() || _var < 0 );
+		if ( !std::cin.good() || _var < 0 )
+		{
+			std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
+			std::cin.clear();
+			while ( std::cin.get() != '\n' )
+			{
+			}
+			continue;
+		}
+		break;
+	} while ( true );
 
 	a = _var;
 
@@ -201,7 +249,17 @@ void Obdlznik::nastav()
 	{
 		std::cout << "Zadajte stranu b:" << std::endl;
 		std::cin >> _var;
-	} while ( !std::cin.good() || _var < 0 );
+		if ( !std::cin.good() || _var < 0 )
+		{
+			std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
+			std::cin.clear();
+			while ( std::cin.get() != '\n' )
+			{
+			}
+			continue;
+		}
+		break;
+	} while ( true );
 
 	b = _var;
 }
@@ -235,7 +293,17 @@ void Stvorec::nastav()
 	{
 		std::cout << "Zadajte stranu stvorca: " << std::endl;
 		std::cin >> _var;
-	} while ( std::cin.good() || _var < 0 );
+		if ( !std::cin.good() || _var < 0 )
+		{
+			std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
+			std::cin.clear();
+			while ( std::cin.get() != '\n' )
+			{
+			}
+			continue;
+		}
+		break;
+	} while ( true );
 	a = _var;
 	b = _var;
 }
@@ -283,7 +351,17 @@ void Kruh::nastav()
 	{
 		std::cout << "Zadajte polomer" << std::endl;
 		std::cin >> _var;
-	}while ( !std::cin.good() || _var < 0 );
+		if ( !std::cin.good() || _var < 0 )
+		{
+			std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
+			std::cin.clear();
+			while ( std::cin.get() != '\n' )
+			{
+			}
+			continue;
+		}
+		break;
+	} while ( true );
 
 	r = _var;
 }
@@ -306,11 +384,11 @@ int menu1()
 	do
 	{
 		std::cout << "Vyberte pozadovany objekt: " << std::endl;
-		std::cout << "1.    Trojuholnik" << std::endl;
-		std::cout << "2.    Obdlznik" << std::endl;
-		std::cout << "3.    Stvorec" << std::endl;
-		std::cout << "4.    Kruh" << std::endl;
-		std::cout << "0.    Skoncit program." << std::endl;
+		std::cout << "[1]    Trojuholnik" << std::endl;
+		std::cout << "[2]    Obdlznik" << std::endl;
+		std::cout << "[3]    Stvorec" << std::endl;
+		std::cout << "[4]    Kruh" << std::endl;
+		std::cout << "[0]    Skoncit program." << std::endl;
 		std::cin >> vyber;
 	} while ( std::cin.good() && (vyber < 0 || vyber > 4));
 	return vyber;
