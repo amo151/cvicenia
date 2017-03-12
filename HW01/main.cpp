@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Objekt.h"
-//TODO napisat ochranu aby kazdy objekt po prebehnuti cyklu zanikol asi to bude najlepsie cez pointery spravit
 
 using namespace std;
 
@@ -8,10 +7,6 @@ int main()
 {
 	int         typObjektu;
 	int         akcia;
-	Obdlznik    o1;
-	Trojuholnik t1;
-	Stvorec     s1;
-	Kruh        k1;
 
 	Objekt *objekt = NULL;
 
@@ -22,20 +17,21 @@ int main()
 			switch ( typObjektu )
 			{
 				case 1:
-					objekt = &t1;
+					objekt = new Trojuholnik;
 					break;
 				case 2:
-					objekt = &o1;
+					objekt = new Obdlznik;
 					break;
 				case 3:
-					objekt = &s1;
+					objekt = new Stvorec;
 					break;
 				case 4:
-					objekt = &k1;
+					objekt = new Kruh;
 					break;
 				default:
 					cout << "Koniec programu!" << endl;
-					break;
+					delete objekt;
+					return 0;
 			}
 			objekt->nastav();
 		}
@@ -44,23 +40,21 @@ int main()
 			switch ( typObjektu )
 			{
 				case 1:
-					objekt = &t1;
+					objekt = new Trojuholnik;
 					break;
 				case 2:
-					o1.setA(15);
-					o1.setB(10);
-					objekt = &o1;
+					objekt = new Obdlznik;
 					break;
 				case 3:
-					objekt = &s1;
+					objekt = new Stvorec;
 					break;
 				case 4:
-					objekt = &k1;
+					objekt = new Kruh;
 					break;
 				default:
 					cout << "Koniec programu!" << endl;
+					delete objekt;
 					return 0;
-					break;
 			}
 
 		}
@@ -75,12 +69,14 @@ int main()
 				cout << "Plocha vymi zvoleneho objektu je: " << objekt->vypocitajPlochu() << endl;
 				break;
 			case 2:
-				cout << "Obvod vami zvoleneho objektu je: " << objekt->vypocitajObvod() << endl;
+				cout << "Obvod vami zvoleneho objektu je: " << objekt->vypocitajObvod() << endl << endl;
 				break;
 			default:
 				cout << "Koniec programu" << endl;
+				delete objekt;
+				return 0;
 		}
-
+		delete objekt;
 	}
 	return 0;
 }

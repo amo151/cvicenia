@@ -84,12 +84,7 @@ void Trojuholnik::setC(double c)
 
 bool Trojuholnik::isValid()
 {
-	if ( a + b > c && b + c > a && c + a > b && a != 0 && b != 0 &&
-	     c != 0 )//clion chce toto previes na ternarny operator :-D to je ale usporne IDE :-D
-	{
-		return true;
-	}
-	return false;
+	return a + b > c && b + c > a && c + a > b && a != 0 && b != 0 && c != 0;
 }
 
 Trojuholnik::Trojuholnik(double stranaA, double stranaB, double stranaC)
@@ -98,36 +93,43 @@ Trojuholnik::Trojuholnik(double stranaA, double stranaB, double stranaC)
 	a = stranaA;
 	b = stranaB;
 	c = stranaC;
-	if ( !isValid())
+	while ( !isValid())
 	{
-		std::cerr
-				<< "Parametre boli nastavene ale nie su spravne preto kazda operacia bude vyhodnotena ako neuskutocnitelna!!!"
-				<< std::endl;
+		std::cerr << "Zadajte spravne hodnoty!!!" << std::endl;
+		nastav();
 	}
 }
 
 void Trojuholnik::nastav()
 {
 	double _var;
-	std::cout << "Zadajte stranu a trojuholnika:" << std::endl;
-	std::cin >> _var;
-	if ( std::cin.good() && _var > 0 )
+	do
 	{
-		a=_var;
-	}
-	std::cout << "Zadajte stranu b trojuholnika:" << std::endl;
-	std::cin >> _var;
-	if ( std::cin.good() && _var > 0 )
-	{
-		b= _var;
-	}
-	std::cout << "Zadajte stranu b trojuholnika:" << std::endl;
-	std::cin >> _var;
-	if ( std::cin.good() && _var > 0 )
-	{
-		c=_var;
-	}
+		do
+		{
+			std::cout << "Zadajte stranu a trojuholnika:" << std::endl;
+			std::cin >> _var;
+		} while ( !std::cin.good() || _var < 0 );
 
+		a = _var;
+
+		do
+		{
+			std::cout << "Zadajte stranu b trojuholnika:" << std::endl;
+			std::cin >> _var;
+		} while ( !std::cin.good() || _var < 0 );
+
+		b = _var;
+
+		do
+		{
+			std::cout << "Zadajte stranu c trojuholnika:" << std::endl;
+			std::cin >> _var;
+		} while ( !std::cin.good() || _var < 0 );
+
+		c = _var;
+
+	} while ( !isValid());
 }
 
 /*******************************
@@ -171,40 +173,37 @@ void Obdlznik::setB(double b)
 
 Obdlznik::Obdlznik(double stranaA, double stranaB)
 {
-	if ( stranaA != 0 && stranaB != 0 && stranaA > 0 && stranaB > 0 )
+	if ( stranaA > 0 && stranaB > 0 )
 	{
 		a = stranaA;
 		b = stranaB;
 	}
 	else
 	{
-		std::cerr << "Nepodarilo sa zostaviť objekt!!!" << std::endl;
+		std::cerr << "Zadajte platne hodnoty!!!" << std::endl;
+		nastav();
 	}
 }
 
 void Obdlznik::nastav()
 {
 	double _var;
-	std::cout << "Zadajte stranu a:" << std::endl;
-	std::cin >> _var;
-	if ( std::cin.good() && _var > 0 )
+
+	do
 	{
-		a = _var;
-	}
-	else
+		std::cout << "Zadajte stranu a:" << std::endl;
+		std::cin >> _var;
+	} while ( !std::cin.good() || _var < 0 );
+
+	a = _var;
+
+	do
 	{
-		std::cerr << "Neplatny vstup!!" << std::endl;
-	}
-	std::cout << "Zadajte stranu b:" << std::endl;
-	std::cin >> _var;
-	if ( std::cin.good() && _var > 0 )
-	{
-		b = _var;
-	}
-	else
-	{
-		std::cerr << "Neplatny vstup!!" << std::endl;
-	}
+		std::cout << "Zadajte stranu b:" << std::endl;
+		std::cin >> _var;
+	} while ( !std::cin.good() || _var < 0 );
+
+	b = _var;
 }
 
 double Obdlznik::vypocitajObvod()
@@ -223,31 +222,22 @@ double Obdlznik::vypocitajPlochu()
  */
 Stvorec::Stvorec(double a)
 {
-	if ( a > 0 )
-	{
-		Stvorec::a = a;
-		Stvorec::b = a;
-	}
-	else
-	{
-		std::cerr << "Nepodarilo sa zostaviť objekt!!!" << std::endl;
-	}
+	Stvorec::a = a;
+	Stvorec::b = a;
 }
+
 
 void Stvorec::nastav()
 {
 	double _var;
-	std::cout << "Zadajte stranu stvorca: " << std::endl;
-	std::cin >> _var;
-	if ( std::cin.good() && _var > 0 )
+
+	do
 	{
-		a = _var;
-		b = _var;
-	}
-	else
-	{
-		std::cerr << "Neplatny vstup!!" << std::endl;
-	}
+		std::cout << "Zadajte stranu stvorca: " << std::endl;
+		std::cin >> _var;
+	} while ( std::cin.good() || _var < 0 );
+	a = _var;
+	b = _var;
 }
 
 /*******************************
@@ -280,23 +270,22 @@ Kruh::Kruh(int r)
 	}
 	else
 	{
-		std::cerr << "Nepodarilo sa zostaviť objekt!!!" << std::endl;
+		std::cerr << "Zadajte platnu hodnotu!!!" << std::endl;
+		nastav();
 	}
 }
 
 void Kruh::nastav()
 {
 	double _var;
-	std::cout << "Zadajte polomer" << std::endl;
-	std::cin >> _var;
-	if ( std::cin.good() && _var > 0 )
+
+	do
 	{
-		r = _var;
-	}
-	else
-	{
-		std::cerr << "Neplatny vstup!!" << std::endl;
-	}
+		std::cout << "Zadajte polomer" << std::endl;
+		std::cin >> _var;
+	}while ( !std::cin.good() || _var < 0 );
+
+	r = _var;
 }
 
 
@@ -333,12 +322,7 @@ bool hodnotyUser()
 	std::string string;
 	std::cout << "Chcete zadavat hodnoty manualne?(yes/no)" << std::endl;
 	std::cin >> string;
-	if ( string.compare("yes") == 0 )
-	{
-		return true;
-	}
+	return string.compare("yes") == 0;
 
-	return false;
 }
-
 
