@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
 #include "Objekt.h"
 
 
@@ -37,7 +38,14 @@ double Trojuholnik::getA() const
 
 void Trojuholnik::setA(double a)
 {
-	a > 0 ? Trojuholnik::a = a : std::cerr << "Nepodarilo sa nastaviť stranu a!(zaporna hodnota)" << std::endl;
+	if ( a > 0 )
+	{
+		Trojuholnik::a = a;
+	}
+	else
+	{
+		std::cerr << "Nepodarilo sa nastaviť stranu a!(zaporna hodnota)" << std::endl;
+	}
 }
 
 double Trojuholnik::getB() const
@@ -47,7 +55,14 @@ double Trojuholnik::getB() const
 
 void Trojuholnik::setB(double b)
 {
-	b > 0 ? Trojuholnik::b = b : std::cerr << "Nepodarilo sa nastaviť stranu b!(zaporna hodnota)" << std::endl;
+	if ( b > 0 )
+	{
+		Trojuholnik::b = b;
+	}
+	else
+	{
+		std::cerr << "Nepodarilo sa nastaviť stranu b!(zaporna hodnota)" << std::endl;
+	}
 }
 
 double Trojuholnik::getC() const
@@ -57,7 +72,14 @@ double Trojuholnik::getC() const
 
 void Trojuholnik::setC(double c)
 {
-	c > 0 ? Trojuholnik::c = c : std::cerr << "Nepodarilo sa nastaviť stranu c!(zaporna hodnota)" << std::endl;
+	if ( c > 0 )
+	{
+		Trojuholnik::c = c;
+	}
+	else
+	{
+		std::cerr << "Nepodarilo sa nastaviť stranu c!(zaporna hodnota)" << std::endl;
+	}
 }
 
 bool Trojuholnik::isValid()
@@ -84,18 +106,28 @@ Trojuholnik::Trojuholnik(double stranaA, double stranaB, double stranaC)
 	}
 }
 
-Trojuholnik::Trojuholnik()
+void Trojuholnik::nastav()
 {
 	double _var;
 	std::cout << "Zadajte stranu a trojuholnika:" << std::endl;
 	std::cin >> _var;
-	std::cin.good() && _var > 0 ? (a = _var) : std::cerr << "Neplatny vstup!!" << std::endl;
+	if ( std::cin.good() && _var > 0 )
+	{
+		a=_var;
+	}
 	std::cout << "Zadajte stranu b trojuholnika:" << std::endl;
 	std::cin >> _var;
-	std::cin.good() && _var > 0 ? (b = _var) : std::cerr << "Neplatny vstup!!" << std::endl;
-	std::cout << "Zadajte stranu c trojuholnika:" << std::endl;
+	if ( std::cin.good() && _var > 0 )
+	{
+		b= _var;
+	}
+	std::cout << "Zadajte stranu b trojuholnika:" << std::endl;
 	std::cin >> _var;
-	std::cin.good() && _var > 0 ? (c = _var) : std::cerr << "Neplatny vstup!!" << std::endl;
+	if ( std::cin.good() && _var > 0 )
+	{
+		c=_var;
+	}
+
 }
 
 /*******************************
@@ -110,7 +142,14 @@ double Obdlznik::getA() const
 
 void Obdlznik::setA(double a)
 {
-	a > 0 ? Obdlznik::a = a : std::cerr << "Nepodarilo sa nastaviť stranu a!(zaporna hodnota)" << std::endl;
+	if ( a > 0 )
+	{
+		Obdlznik::a = a;
+	}
+	else
+	{
+		std::cerr << "Nepodarilo sa nastaviť stranu a!(zaporna hodnota)" << std::endl;
+	}
 }
 
 double Obdlznik::getB() const
@@ -120,7 +159,14 @@ double Obdlznik::getB() const
 
 void Obdlznik::setB(double b)
 {
-	b > 0 ? Obdlznik::b = b : std::cerr << "Nepodarilo sa nastaviť stranu b!(zaporna hodnota)" << std::endl;
+	if ( b > 0 )
+	{
+		Obdlznik::b = b;
+	}
+	else
+	{
+		std::cerr << "Nepodarilo sa nastaviť stranu b!(zaporna hodnota)" << std::endl;
+	}
 }
 
 Obdlznik::Obdlznik(double stranaA, double stranaB)
@@ -136,25 +182,39 @@ Obdlznik::Obdlznik(double stranaA, double stranaB)
 	}
 }
 
-Obdlznik::Obdlznik()
+void Obdlznik::nastav()
 {
 	double _var;
 	std::cout << "Zadajte stranu a:" << std::endl;
 	std::cin >> _var;
-	std::cin.good() && _var > 0 ? (a = _var) : std::cerr << "Neplatny vstup!!" << std::endl;
+	if ( std::cin.good() && _var > 0 )
+	{
+		a = _var;
+	}
+	else
+	{
+		std::cerr << "Neplatny vstup!!" << std::endl;
+	}
 	std::cout << "Zadajte stranu b:" << std::endl;
 	std::cin >> _var;
-	std::cin.good() && _var > 0 ? (b = _var) : std::cerr << "Neplatny vstup!!" << std::endl;
+	if ( std::cin.good() && _var > 0 )
+	{
+		b = _var;
+	}
+	else
+	{
+		std::cerr << "Neplatny vstup!!" << std::endl;
+	}
 }
 
 double Obdlznik::vypocitajObvod()
 {
-	return 2*(a+b);
+	return 2 * (a + b);
 }
 
 double Obdlznik::vypocitajPlochu()
 {
-	return a*b;
+	return a * b;
 }
 
 /*******************************
@@ -174,10 +234,10 @@ Stvorec::Stvorec(double a)
 	}
 }
 
-Stvorec::Stvorec()
+void Stvorec::nastav()
 {
 	double _var;
-	std::cout << "Zadajte stranu stvorca" << std::endl;
+	std::cout << "Zadajte stranu stvorca: " << std::endl;
 	std::cin >> _var;
 	if ( std::cin.good() && _var > 0 )
 	{
@@ -202,22 +262,36 @@ double Kruh::getR() const
 
 void Kruh::setR(double r)
 {
-	r > 0 ? Kruh::r = r : std::cerr << "Nepodarilo sa nastaviť polomer!(zaporna hodnota)" << std::endl;
+	if ( r > 0 )
+	{
+		Kruh::r = r;
+	}
+	else
+	{
+		std::cerr << "Nepodarilo sa nastaviť polomer!(zaporna hodnota)" << std::endl;
+	}
 }
 
-Kruh::Kruh(int r = 1)
+Kruh::Kruh(int r)
 {
-	r > 0 ? Kruh::r = r : std::cerr << "Nepodarilo sa zostaviť objekt!!!" << std::endl;
+	if ( r > 0 )
+	{
+		Kruh::r = r;
+	}
+	else
+	{
+		std::cerr << "Nepodarilo sa zostaviť objekt!!!" << std::endl;
+	}
 }
 
-Kruh::Kruh()
+void Kruh::nastav()
 {
 	double _var;
 	std::cout << "Zadajte polomer" << std::endl;
 	std::cin >> _var;
 	if ( std::cin.good() && _var > 0 )
 	{
-		r=_var;
+		r = _var;
 	}
 	else
 	{
@@ -228,13 +302,43 @@ Kruh::Kruh()
 
 double Kruh::vypocitajObvod()
 {
-	return 2*M_PI*r;
+	return 2 * M_PI * r;
 }
 
 double Kruh::vypocitajPlochu()
 {
-	return M_PI*r*r;
+	return M_PI * r * r;
 }
 
+
+int menu1()
+{
+	int vyber = 0;
+	do
+	{
+		std::cout << "Vyberte pozadovany objekt: " << std::endl;
+		std::cout << "1.    Trojuholnik" << std::endl;
+		std::cout << "2.    Obdlznik" << std::endl;
+		std::cout << "3.    Stvorec" << std::endl;
+		std::cout << "4.    Kruh" << std::endl;
+		std::cout << "0.    Skoncit program." << std::endl;
+		std::cin >> vyber;
+	} while ( std::cin.good() && (vyber < 0 || vyber > 4));
+	return vyber;
+
+}
+
+bool hodnotyUser()
+{
+	std::string string;
+	std::cout << "Chcete zadavat hodnoty manualne?(yes/no)" << std::endl;
+	std::cin >> string;
+	if ( string.compare("yes") == 0 )
+	{
+		return true;
+	}
+
+	return false;
+}
 
 

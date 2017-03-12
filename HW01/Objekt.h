@@ -11,6 +11,9 @@ public:
 	virtual double vypocitajPlochu() = 0;
 
 	virtual double vypocitajObvod() = 0;
+
+	virtual void nastav() = 0;
+
 };
 
 class Trojuholnik : public Objekt {
@@ -18,10 +21,8 @@ private:
 	double a, b, c;
 
 public:
-	Trojuholnik(double stranaA, double stranaB,
-	            double stranaC);//musi zabezpecit aj to ci je ten trojuholnik zostrojitelny
-
-	Trojuholnik();
+	Trojuholnik(double stranaA = 3, double stranaB = 4,
+	            double stranaC = 5);//musi zabezpecit aj to ci je ten trojuholnik zostrojitelny
 
 	double getA() const;
 
@@ -37,6 +38,8 @@ public:
 
 	bool isValid();
 
+	void nastav();
+
 	double vypocitajObvod();
 
 	double vypocitajPlochu();
@@ -45,9 +48,7 @@ public:
 
 class Obdlznik : public Objekt {
 public:
-	Obdlznik(double stranaA, double stranaB);
-
-	Obdlznik();
+	Obdlznik(double stranaA = 15, double stranaB = 5);
 
 	double getB() const;
 
@@ -56,6 +57,8 @@ public:
 	double getA() const;
 
 	void setA(double a);
+
+	virtual void nastav();
 
 	double vypocitajObvod();
 
@@ -67,17 +70,17 @@ protected:
 
 class Stvorec : public Obdlznik {
 public:
-	Stvorec(double a);
+	Stvorec(double a=15);
 
-	Stvorec();
+	void nastav();
 
 };
 
 class Kruh : public Objekt {
 public:
-	Kruh(int r = 1);
+	Kruh(int r=1);
 
-	Kruh();
+	void nastav();
 
 	double getR() const;
 
@@ -92,9 +95,6 @@ private:
 
 };
 
-void menu()
-{
-
-}
-
+int menu1();
+bool hodnotyUser();
 #endif //HW01_OBJEKT_H
