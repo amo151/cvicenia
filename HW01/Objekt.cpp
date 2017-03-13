@@ -404,3 +404,60 @@ bool hodnotyUser()
 
 }
 
+int pridel(int typ, Objekt **objekt)
+{
+	static int i=0;
+	switch ( typ )
+	{
+		case 1:
+			*objekt = new Trojuholnik;
+			break;
+		case 2:
+			*objekt = new Obdlznik;
+			break;
+		case 3:
+			*objekt = new Stvorec;
+			break;
+		case 4:
+			*objekt = new Kruh;
+			break;
+		default:
+		std::cout << "Koniec programu!" << std::endl;
+			return 100+(i++);
+	}
+	return 0;
+}
+
+int menu2(Objekt **objekt)
+{
+	int akcia;
+	do
+	{
+		std::cout << "\nCo chcete s objektom vykonat?" << std::endl;
+		std::cout << "[1]     Vypocitat obsah" << std::endl;
+		std::cout << "[2]     Vypocitat obvod" << std::endl;
+		std::cout << "[0]     Nechcem robit nic." << std::endl;
+		std::cin >> akcia;
+		switch ( akcia )
+		{
+			case 1:
+			std::cout << "Plocha vymi zvoleneho objektu je: " << (*objekt)->vypocitajPlochu() << std::endl;
+				break;
+			case 2:
+				std::cout << "Obvod vami zvoleneho objektu je: " << (*objekt)->vypocitajObvod() << std::endl <<std:: endl;
+				break;
+			default:
+				std::cout << "Vami zadany objekt bol zmazany." << std::endl;
+				std::string ret;
+				std::cout << "Chcete pokracovat s inym objektom? (yes/no)" << std::endl;
+				std::cin >> ret;
+				if ( ret.compare("yes") != 0 )
+				{
+					std::cout << "Ukoncujem program..." << std::endl;
+					return 0;//chcem skoncit uplne
+				}
+				return 100;
+		}
+	} while ( akcia != 0 );
+	return 0;
+}
