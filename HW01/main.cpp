@@ -10,6 +10,7 @@ int main()
 
 	Objekt *objekt = NULL;
 
+
 	while ((typObjektu = menu1()) != 0 )
 	{
 		if ( hodnotyUser())//ak chce zadavat hodnoty uzivatel
@@ -30,8 +31,7 @@ int main()
 					break;
 				default:
 					cout << "Koniec programu!" << endl;
-					delete objekt;
-					return 0;
+					goto koniec;
 			}
 			objekt->nastav();
 		}
@@ -53,8 +53,7 @@ int main()
 					break;
 				default:
 					cout << "Koniec programu!" << endl;
-					delete objekt;
-					return 0;
+					goto koniec;
 			}
 
 		}
@@ -76,23 +75,21 @@ int main()
 					cout << "Obvod vami zvoleneho objektu je: " << objekt->vypocitajObvod() << endl << endl;
 					break;
 				default:
-					delete objekt;
 					cout << "Vami zadany objekt bol zmazany." << endl;
-					string string;
+					string ret;
 					cout << "Chcete pokracovat s inym objektom? (yes/no)" << endl;
-					cin >> string;
-					if ( string.compare("yes") == 0 )
-					{
-						break;
-					}
-					else
+					cin >> ret;
+					if ( ret.compare("yes") != 0 )
 					{
 						cout << "Ukoncujem program..." << endl;
-						return 0;
+						goto koniec;
 					}
+					break;
 			}
 		} while ( akcia != 0 );
-		delete objekt;
 	}
+
+	koniec:
+	delete objekt;
 	return 0;
 }

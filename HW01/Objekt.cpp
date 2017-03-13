@@ -390,7 +390,7 @@ int menu1()
 		std::cout << "[4]    Kruh" << std::endl;
 		std::cout << "[0]    Skoncit program." << std::endl;
 		std::cin >> vyber;
-	} while ( std::cin.good() && (vyber < 0 || vyber > 4));
+	} while ( !std::cin.good() || (vyber < 0 || vyber > 4));
 	return vyber;
 
 }
