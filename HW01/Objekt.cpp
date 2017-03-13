@@ -14,20 +14,14 @@
  */
 double Trojuholnik::vypocitajObvod()
 {
-	if ( isValid())
-	{
-		return a + b + c;
-	}
-	else
-	{
-		std::cerr << "Takyto trojuholnik neexistuje!!!" << std::endl;
-		return -1;
-	}
+	std::cout << "Rozmery trojuholnika su: a = " << a << " b = " << b << " c = " << c << std::endl;
+	return a + b + c;
 }
 
 double Trojuholnik::vypocitajPlochu()//vypocet heronovym vzorcom
 {
 	double s = vypocitajObvod() / 2;
+	std::cout << "Rozmery trojuholnika su: a = " << a << " b = " << b << " c = " << c << std::endl;
 	return sqrt(s * (s - a) * (s - b) * (s - c));
 }
 
@@ -266,11 +260,13 @@ void Obdlznik::nastav()
 
 double Obdlznik::vypocitajObvod()
 {
+	std::cout << "Rozmery " << (a == b ? "stvorca" : "obdlznika") << "a su: a = " << a << " b = " << b << std::endl;
 	return 2 * (a + b);
 }
 
 double Obdlznik::vypocitajPlochu()
 {
+	std::cout << "Rozmery " << (a == b ? "stvorca" : "obdlznika") << "su: a = " << a << " b = " << b << std::endl;
 	return a * b;
 }
 
@@ -355,7 +351,7 @@ void Kruh::nastav()
 		{
 			std::cout << "Zadajte spravnu hodnotu(double)!" << std::endl;
 			std::cin.clear();
-			while ( std::cin.get() != '\n' )
+			while ( std::cin.get() != '\n' )//vymazavam buffer
 			{
 			}
 			continue;
@@ -369,11 +365,13 @@ void Kruh::nastav()
 
 double Kruh::vypocitajObvod()
 {
+	std::cout << "Polomer kruhu je: r = " << r << std::endl;
 	return 2 * M_PI * r;
 }
 
 double Kruh::vypocitajPlochu()
 {
+	std::cout << "Polomer kruhu je: r = " << r << std::endl;
 	return M_PI * r * r;
 }
 
@@ -406,7 +404,7 @@ bool hodnotyUser()
 
 int pridel(int typ, Objekt **objekt)
 {
-	static int i=0;
+	static int i = 0;
 	switch ( typ )
 	{
 		case 1:
@@ -422,8 +420,8 @@ int pridel(int typ, Objekt **objekt)
 			*objekt = new Kruh;
 			break;
 		default:
-		std::cout << "Koniec programu!" << std::endl;
-			return 100+(i++);
+			std::cout << "Koniec programu!" << std::endl;
+			return 100 + (i++);
 	}
 	return 0;
 }
@@ -441,10 +439,11 @@ int menu2(Objekt **objekt)
 		switch ( akcia )
 		{
 			case 1:
-			std::cout << "Plocha vymi zvoleneho objektu je: " << (*objekt)->vypocitajPlochu() << std::endl;
+				std::cout << "Plocha vami zvoleneho objektu je: " << (*objekt)->vypocitajPlochu() << std::endl;
 				break;
 			case 2:
-				std::cout << "Obvod vami zvoleneho objektu je: " << (*objekt)->vypocitajObvod() << std::endl <<std:: endl;
+				std::cout << "Obvod vami zvoleneho objektu je: " << (*objekt)->vypocitajObvod() << std::endl
+				          << std::endl;
 				break;
 			default:
 				std::cout << "Vami zadany objekt bol zmazany." << std::endl;

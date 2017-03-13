@@ -92,11 +92,11 @@ public:
 
 private:
 	double r;
-
 };
 
 int menu1();
+int menu2(Objekt **objekt);
 bool hodnotyUser();
 int pridel(int typ, Objekt **objekt);
-int menu2(Objekt **objekt);
+
 #endif //HW01_OBJEKT_H
