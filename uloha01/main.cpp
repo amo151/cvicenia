@@ -22,6 +22,8 @@ int main()
 	zasobnik.push(134);
 	zasobnik.push(98);
 
+	cout << "neehehehe" <<endl;
+
 	cout << zasobnik.pop() << endl;
 	cout << zasobnik.pop() << endl;
 	cout << zasobnik.pop() << endl;
