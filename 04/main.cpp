@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-
+/*
 class A {
 	//virtualni bazova trieda
 
@@ -75,7 +75,7 @@ public:
 	ABC(int a, int b, int c) : C(c), B(b), A(a) {	}
 
 };*/
-
+/*
 class D : public B, public C {
 	//vysledna trieda bude obsahovat tolko podobejktov dane triedy a, kolkokrat je tato trieda nevirtualnym predkom a jeden spolocny podobejkt A za vsetkych virtualnych predkov triedy A
 	int dd;
@@ -107,5 +107,37 @@ int main()
 	d1.fb();
 	d1.fa();
 
+	return 0;
+}*/
+
+class A {
+public:
+	A operator++();//prefixovy operator
+	A operator&(A);//binarny operator
+	A operator&();//unarni operator
+};
+
+struct complex {
+	double re, im;
+};
+
+complex operator+(complex a, complex b)
+{
+	complex tmp;
+	tmp.re = a.re + b.re;
+	tmp.im = a.im + b.im;
+	return tmp;
+}
+
+
+int main(void)
+{
+	complex X = {1.0, 2.0};
+	complex Y = {2.0, 1.0};
+	complex Z;
+
+	Z = X + Y;
+
+	cout << "re: " << Z.re << endl << "im: " << Z.im << endl;
 	return 0;
 }
